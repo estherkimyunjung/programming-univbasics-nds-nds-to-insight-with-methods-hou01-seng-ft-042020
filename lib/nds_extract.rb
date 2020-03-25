@@ -7,13 +7,13 @@ require 'pry'
 
 # pp directors_database
 
-def gross_for_director(director_database)
+def gross_for_director(director_data)
   gross = 0
-  inner_len = director_database[:movies].length
+  inner_len = director_data[:movies].length
   director_movies_index = 0
   
    while director_movies_index < inner_len do
-     gross += director_database[:movies][director_movies_index][:worldwide_gross]
+     gross += director_data[:movies][director_movies_index][:worldwide_gross]
      director_movies_index += 1
    end
    gross
@@ -31,14 +31,17 @@ def directors_totals(nds)
 
   while director_index < nds.length do
     director = nds[director_index]
-    directors_name = director[:name]
-    director_movies_index = 0 
-    total = 0
-    while director_movies_index < director[:movies].length do
-      total += director[:movies][director_movies_index][:worldwide_gross]
-      results[directors_name] = total
-      director_movies_index += 1 
-	  end
+    
+  #   directors_name = director[:name]
+  #   director_movies_index = 0 
+  #   total = 0
+  #   while director_movies_index < director[:movies].length do
+  #     total += director[:movies][director_movies_index][:worldwide_gross]
+  #     results[directors_name] = total
+  #     director_movies_index += 1 
+	#   end
+
+   results[directors[:name]] = gross_for_director(directors)
 	  
     director_index += 1
   end
